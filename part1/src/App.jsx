@@ -1,14 +1,20 @@
-
 import React from 'react';
 
 const Header = ({ course }) => <h1>{course}</h1>;
 
-const Content = ({ parts }) =>
-  parts.map((part, index) => (
-    <p key={index}>
-      {part.name} {part.exercises}
-    </p>
-  ));
+const Part = ({ name, exercises }) => (
+  <p>
+    {name} {exercises}
+  </p>
+);
+
+const Content = ({ parts }) => (
+  <div>
+    {parts.map((part, index) => (
+      <Part key={index} name={part.name} exercises={part.exercises} />
+    ))}
+  </div>
+);
 
 const Total = ({ parts }) => (
   <p>Number of exercises {parts.reduce((sum, part) => sum + part.exercises, 0)}</p>
@@ -32,3 +38,4 @@ const App = () => {
 };
 
 export default App;
+
