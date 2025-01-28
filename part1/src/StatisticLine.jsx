@@ -1,10 +1,12 @@
 const StatisticLine = ({ text, value }) => {
-    return (
-      <div>
-        {text} {value}
-      </div>
-    );
-  };
-  
-  export default StatisticLine;
+  return (
+    <tr>
+      <td>{text}</td>
+      <td>{value}</td>
+    </tr>
+  );
+};
+
+export default StatisticLine;
+
   
