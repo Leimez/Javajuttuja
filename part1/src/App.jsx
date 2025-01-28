@@ -17,7 +17,8 @@ const App = () => {
   const [good, setGood] = useState(0);
   const [neutral, setNeutral] = useState(0);
   const [bad, setBad] = useState(0);
-  const [selected, setSelected] = useState(0);
+  const [selected, setSelected] = useState(0); 
+  const [votes, setVotes] = useState(Array(anecdotes.length).fill(0)); 
 
   const all = good + neutral + bad;
   const average = all > 0 ? (good - bad) / all : 0;
@@ -26,6 +27,12 @@ const App = () => {
   const randomAnecdote = () => {
     const randomIndex = Math.floor(Math.random() * anecdotes.length);
     setSelected(randomIndex); 
+  };
+
+  const voteAnecdote = () => {
+    const copy = [...votes];
+    copy[selected] += 1; 
+    setVotes(copy); 
   };
 
   return (
@@ -44,11 +51,14 @@ const App = () => {
 
       <h2>Anecdote</h2>
       <p>{anecdotes[selected]}</p>
+      <p>has {votes[selected]} votes</p>
       <Button onClick={randomAnecdote} text="show random anecdote" />
+      <Button onClick={voteAnecdote} text="vote" />
     </div>
   );
 };
 
 export default App;
+
 
 
